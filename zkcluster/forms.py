@@ -3,6 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from .models import Terminal, User
 
+UDP_CHOICES = ((True, _('UDP Only')), (False, _('TCP/UDP')))
 
 class ScanTerminal(forms.Form):
     ip = forms.CharField(
@@ -19,6 +20,22 @@ class ScanTerminal(forms.Form):
             'value': 4370,
             'class': 'form-control',
         })
+    )
+    password = forms.IntegerField(
+        label=_('Password'),
+        widget=forms.TextInput(attrs={
+            'value': 0,
+            'class': 'form-control',
+        })
+    )
+    force_udp = forms.ChoiceField(
+        choices=UDP_CHOICES,
+        initial='',
+        label=_('Communication'),
+        widget=forms.Select(attrs={
+            'class': 'form-control',
+            }
+        )
     )
 
     def clean_ip(self):
@@ -70,7 +87,14 @@ class SaveTerminal(forms.ModelForm, ScanTerminal):
             'class': 'form-control',
             'readonly': True
         })
-
+        self.fields['password'].widget = forms.TextInput(attrs={
+            'class': 'form-control',
+            'readonly': True
+        })
+        self.fields['force_udp'].widget = forms.Select(attrs={
+            'class': 'form-control',
+            'readonly': True
+        }, choices=UDP_CHOICES)
     def clean_serialnumber(self):
         serialnumber = self.cleaned_data.get('serialnumber')
         try:
@@ -93,7 +117,7 @@ class SaveTerminal(forms.ModelForm, ScanTerminal):
 
     class Meta:
         model = Terminal
-        fields = ('ip', 'port', 'serialnumber', 'name')
+        fields = ('ip', 'port', 'password', 'force_udp', 'serialnumber', 'name')
 
 class EditTerminal(SaveTerminal):
     def __init__(self, *args, **kwargs):
@@ -106,6 +130,12 @@ class EditTerminal(SaveTerminal):
         self.fields['port'].widget = forms.TextInput(attrs={
             'class': 'form-control'
         })
+        self.fields['password'].widget = forms.TextInput(attrs={
+            'class': 'form-control',
+        })
+        self.fields['force_udp'].widget = forms.Select(attrs={
+            'class': 'form-control',
+        }, choices=UDP_CHOICES)
 
 class UserForm(forms.ModelForm):
     class Meta:

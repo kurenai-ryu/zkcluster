@@ -10,6 +10,11 @@ from django.views.decorators.http import require_http_methods as alowed
 from .forms import ScanTerminal, SaveTerminal, EditTerminal, UserForm
 from .models import Terminal, User, Attendance
 
+import logging
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
+
 @alowed(['GET'])
 @login_required
 def index(request):
@@ -39,7 +44,7 @@ def terminal_add(request):
             try:
                 form.save()
                 return redirect('zkcluster:terminal')
-            except ZKError, e:
+            except ZKError as e:
                 messages.add_message(request, messages.ERROR, str(e))
     else:
         form = SaveTerminal(request.POST or None)
@@ -56,10 +61,14 @@ def terminal_scan(request):
     if request.POST and form.is_valid():
         ip = form.cleaned_data['ip']
         port = form.cleaned_data['port']
+        password = form.cleaned_data['password']
+        force_udp = form.cleaned_data['force_udp']
 
         terminal = Terminal(
             ip=ip,
-            port=port
+            port=port,
+            password=password,
+            force_udp=force_udp
         )
         try:
             terminal.zk_connect()
@@ -73,7 +82,7 @@ def terminal_scan(request):
 
             terminal.zk_disconnect()
             return terminal_add(request)
-        except ZKError, e:
+        except ZKError as e:
             messages.add_message(request, messages.ERROR, str(e))
 
     data = {
@@ -90,7 +99,7 @@ def terminal_edit(request, terminal_id):
     if request.POST and form.is_valid():
         try:
             form.save()
-        except ZKError, e:
+        except ZKError as e:
             messages.add_message(request, messages.ERROR, str(e))
         return redirect('zkcluster:terminal')
     data = {
@@ -104,7 +113,7 @@ def terminal_format(request, terminal_id):
     terminal = get_object_or_404(Terminal, pk=terminal_id)
     try:
         terminal.format()
-    except ZKError, e:
+    except ZKError as e:
         messages.add_message(request, messages.ERROR, str(e))
 
     return redirect('zkcluster:terminal')
@@ -114,7 +123,7 @@ def terminal_delete(request, terminal_id):
     terminal = get_object_or_404(Terminal, pk=terminal_id)
     try:
         terminal.delete()
-    except ZKError, e:
+    except ZKError as e:
         messages.add_message(request, messages.ERROR, str(e))
 
     return redirect('zkcluster:terminal')
@@ -125,7 +134,7 @@ def terminal_restart(request, terminal_id):
     try:
         terminal.zk_connect()
         terminal.zk_restart()
-    except ZKError, e:
+    except ZKError as e:
         messages.add_message(request, messages.ERROR, str(e))
 
     return redirect('zkcluster:terminal')
@@ -137,7 +146,7 @@ def terminal_poweroff(request, terminal_id):
         terminal.zk_connect()
         terminal.zk_poweroff()
         terminal.zk_disconnect()
-    except ZKError, e:
+    except ZKError as e:
         messages.add_message(request, messages.ERROR, str(e))
 
     return redirect('zkcluster:terminal')
@@ -149,7 +158,7 @@ def terminal_voice(request, terminal_id):
         terminal.zk_connect()
         terminal.zk_voice()
         terminal.zk_disconnect()
-    except ZKError, e:
+    except ZKError as e:
         messages.add_message(request, messages.ERROR, str(e))
 
     return redirect('zkcluster:terminal')
@@ -189,7 +198,7 @@ def user_add(request):
         try:
             form.save()
             return redirect('zkcluster:user')
-        except ZKError, e:
+        except ZKError as e:
             messages.add_message(request, messages.ERROR, str(e))
 
     data = {
@@ -206,7 +215,7 @@ def user_edit(request, user_id):
         try:
             form.save()
             return redirect('zkcluster:user')
-        except ZKError, e:
+        except ZKError as e:
             messages.add_message(request, messages.ERROR, str(e))
 
     data = {
@@ -220,7 +229,7 @@ def delete_user(request, user_id):
     user = get_object_or_404(User, pk=user_id)
     try:
         user.delete()
-    except ZKError, e:
+    except ZKError as e:
         messages.add_message(request, messages.ERROR, str(e))
     return redirect('zkcluster:user')
 
@@ -252,7 +261,11 @@ def attendance_sync(request):
             terminal.zk_connect()
             attendances = []
             for attendance in terminal.zk_get_attendances():
-                user = User.objects.get(pk=attendance.user_id)
+                try:
+                    user = User.objects.get(pk=attendance.user_id)
+                except User.DoesNotExist as e:
+                    logger.warn("User not found")
+                    continue
                 Attendance.objects.create(
                     user=user,
                     timestamp=attendance.timestamp,
@@ -261,6 +274,6 @@ def attendance_sync(request):
             terminal.zk_clear_attendances()
             terminal.zk_voice()
             terminal.zk_disconnect()
-        except ZKError, e:
-            pass
+        except ZKError as e:
+            logger.warn("ZKError on get_attendance")
     return redirect('zkcluster:attendance')

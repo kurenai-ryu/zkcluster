@@ -11,3 +11,9 @@ def get_config():
 
 def get_terminal_timeout():
     return get_config().get('TERMINAL_TIMEOUT', 5)
+
+def get_ommit_ping():
+    return get_config().get('OMMIT_PING', False)
+
+def get_verbose():
+    return get_config().get('VERBOSE', False)

@@ -5,14 +5,15 @@ from zk.exception import ZKError
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 
-from .settings import get_terminal_timeout
+from .settings import get_terminal_timeout, get_ommit_ping, get_verbose
 
 class Terminal(models.Model):
     name = models.CharField(_('name'), max_length=200)
     serialnumber = models.CharField(_('serialnumber'), max_length=100, unique=True)
     ip = models.CharField(_('ip'), max_length=15, unique=True)
     port = models.IntegerField(_('port'), default=4370)
-
+    password = models.IntegerField(_('password'), default=0)
+    force_udp = models.BooleanField(_('udp'), default=False)
     class Meta:
         db_table = 'zk_terminal'
 
@@ -34,7 +35,12 @@ class Terminal(models.Model):
     def zk_connect(self):
         ip = self.ip
         port = self.port
-        terminal = zk.ZK(ip, port, get_terminal_timeout())
+        terminal = zk.ZK(ip, port,
+                         timeout=get_terminal_timeout(),
+                         password=self.password,
+                         force_udp=self.force_udp,
+                         ommit_ping=get_ommit_ping(),
+                         verbose=get_verbose())
         conn = terminal.connect()
         if conn:
             terminal.disable_device()
@@ -130,7 +136,7 @@ class User(models.Model):
         return self.name
 
 class Attendance(models.Model):
-    user = models.ForeignKey(User, related_name='attendances')
+    user = models.ForeignKey(User, related_name='attendances', on_delete=models.PROTECT)
     timestamp = models.DateTimeField()
     status = models.IntegerField()
 

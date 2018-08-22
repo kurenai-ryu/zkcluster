@@ -1,2 +1,10 @@
 *.pyc
 *.DS_Store
+
+.env
+
+*.test*
+
+Pipfile.lock
+secretkey.txt
+*.sqlite*

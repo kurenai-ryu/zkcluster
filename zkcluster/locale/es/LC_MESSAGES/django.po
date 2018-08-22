@@ -1,0 +1,331 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-08-20 18:00-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: forms.py:9 forms.py:65 forms.py:103
+msgid "IP Address"
+msgstr "Dirección IP"
+
+#: forms.py:17 templates/zkcluster/terminal.html:20
+msgid "Port"
+msgstr "Puerto"
+
+#: forms.py:34
+msgid "IP already exists"
+msgstr "Dirección IP ya existente"
+
+#: forms.py:39 templates/zkcluster/terminal.html:18
+msgid "Serial Number"
+msgstr "Número Serial"
+
+#: forms.py:43
+msgid "Serial number"
+msgstr "Número serial"
+
+#: forms.py:49 templates/zkcluster/terminal.html:17
+#: templates/zkcluster/user.html:17
+msgid "Name"
+msgstr "Nombre"
+
+#: forms.py:53
+msgid "Terminal name"
+msgstr "Nombre dispositivo"
+
+#: forms.py:84
+msgid "Serial number already exists"
+msgstr "Numero serial ya existente"
+
+#: forms.py:91
+msgid "This field is required."
+msgstr "Este campo es requerido"
+
+#: forms.py:116
+msgid "Full name"
+msgstr "Nombre Completo"
+
+#: forms.py:123
+msgid "Password"
+msgstr "Contraseña"
+
+#: forms.py:138
+msgid "Enter a whole number."
+msgstr "Ingrese un numero entero"
+
+#: models.py:11 models.py:114
+msgid "name"
+msgstr "nombre"
+
+#: models.py:12
+msgid "serialnumber"
+msgstr "numeroserial"
+
+#: models.py:13
+msgid "ip"
+msgstr "ip"
+
+#: models.py:14
+msgid "port"
+msgstr "puerto"
+
+#: models.py:43
+msgid "can't connect to terminal"
+msgstr "no puedo conectar al dispositivo"
+
+#: models.py:47 models.py:53 models.py:58 models.py:63 models.py:69
+#: models.py:74 models.py:86 models.py:91 models.py:96 models.py:102
+msgid "terminal connection error"
+msgstr "error de conexion a dispositivo"
+
+#: models.py:110 models.py:127 templates/zkcluster/attendance.html:17
+#: templates/zkcluster/base.html:43
+msgid "User"
+msgstr "Usuario"
+
+#: models.py:111 models.py:125
+msgid "Administrator"
+msgstr "Administrador"
+
+#: models.py:115
+msgid "privilege"
+msgstr "privilegio"
+
+#: models.py:116
+msgid "password"
+msgstr "password"
+
+#: models.py:117
+msgid "group id"
+msgstr "id grupo"
+
+#: templates/zkcluster/attendance.html:9 templates/zkcluster/attendance.html:38
+msgid "Sync Attendance"
+msgstr "Sincronizar Asistencia"
+
+#: templates/zkcluster/attendance.html:16 templates/zkcluster/terminal.html:16
+#: templates/zkcluster/user.html:16
+msgid "ID"
+msgstr "ID"
+
+#: templates/zkcluster/attendance.html:18
+msgid "Timestamp"
+msgstr "FechaHora"
+
+#: templates/zkcluster/attendance.html:19
+msgid "Status"
+msgstr "Estado"
+
+#: templates/zkcluster/attendance.html:35
+msgid "No attendance record"
+msgstr "Sin registros de asistencia"
+
+#: templates/zkcluster/base.html:33 templates/zkcluster/dashboard.html:6
+msgid "Dashboard"
+msgstr "Panel de Inicio"
+
+#: templates/zkcluster/base.html:38 templates/zkcluster/user.html:19
+msgid "Terminal"
+msgstr "Dispositivos"
+
+#: templates/zkcluster/base.html:48
+msgid "Attendance"
+msgstr "Asistencia"
+
+#: templates/zkcluster/base.html:57
+msgid "Language"
+msgstr "Idioma"
+
+#: templates/zkcluster/base.html:68
+msgid "Go"
+msgstr "Ir"
+
+#: templates/zkcluster/base.html:73
+msgid "Logout"
+msgstr "Salir"
+
+#: templates/zkcluster/base.html:93
+msgid "Copyright"
+msgstr "derechos reservados"
+
+#: templates/zkcluster/index.html:5
+msgid "Welcome"
+msgstr "Bienvenido"
+
+#: templates/zkcluster/terminal.html:9 templates/zkcluster/terminal.html:78
+msgid "Add Terminal"
+msgstr "Agregar Dispositivo"
+
+#: templates/zkcluster/terminal.html:19
+msgid "IP"
+msgstr "IP"
+
+#: templates/zkcluster/terminal.html:21 templates/zkcluster/terminal.html:44
+#: templates/zkcluster/terminal_edit.html:12 templates/zkcluster/user.html:20
+#: templates/zkcluster/user.html:33
+msgid "Action"
+msgstr "Acción"
+
+#: templates/zkcluster/terminal.html:49
+#: templates/zkcluster/terminal_edit.html:9 templates/zkcluster/user.html:38
+msgid "Edit"
+msgstr "Editar"
+
+#: templates/zkcluster/terminal.html:54
+#: templates/zkcluster/terminal_edit.html:61
+msgid "Restart"
+msgstr "Reiniciar"
+
+#: templates/zkcluster/terminal.html:59
+msgid "Power Off"
+msgstr "Apagar"
+
+#: templates/zkcluster/terminal.html:64
+msgid "Test Sound"
+msgstr "Probar Sonido"
+
+#: templates/zkcluster/terminal.html:76
+msgid "No terminal found"
+msgstr "No se encuentra Dispositivo"
+
+#: templates/zkcluster/terminal_add.html:29
+#: templates/zkcluster/user_add.html:29
+msgid "Save"
+msgstr "Guardar"
+
+#: templates/zkcluster/terminal_edit.html:15
+msgid "Danger Zone"
+msgstr "Configuración Avanzada"
+
+#: templates/zkcluster/terminal_edit.html:47
+#: templates/zkcluster/user_edit.html:30
+msgid "Update"
+msgstr "Actualizar"
+
+#: templates/zkcluster/terminal_edit.html:58
+msgid "Restart Terminal"
+msgstr "Reiniciar Dispositivo"
+
+#: templates/zkcluster/terminal_edit.html:69
+msgid "Shutdown Terminal"
+msgstr "Apagar Dispositivo"
+
+#: templates/zkcluster/terminal_edit.html:72
+msgid "Power off"
+msgstr "Apagar"
+
+#: templates/zkcluster/terminal_edit.html:79
+msgid "Delete This Terminal"
+msgstr "Borrar este Dispositivo"
+
+#: templates/zkcluster/terminal_edit.html:81
+msgid "Delete"
+msgstr "Borrar"
+
+#: templates/zkcluster/terminal_edit.html:85
+msgid "Format Terminal"
+msgstr "Formatear el dispositivo"
+
+#: templates/zkcluster/terminal_edit.html:87
+msgid "Format"
+msgstr "Formatear"
+
+#: templates/zkcluster/terminal_edit.html:103
+#: templates/zkcluster/terminal_edit.html:134
+msgid "Are you ABSOLUTELY sure?"
+msgstr "Está COMPLETAMENTE seguro?"
+
+#: templates/zkcluster/terminal_edit.html:109
+#: templates/zkcluster/terminal_edit.html:140
+msgid "This action"
+msgstr "ESta Acción"
+
+#: templates/zkcluster/terminal_edit.html:109
+#: templates/zkcluster/terminal_edit.html:140
+msgid "CANNOT"
+msgstr "NO SE PUEDE"
+
+#: templates/zkcluster/terminal_edit.html:109
+#: templates/zkcluster/terminal_edit.html:140
+msgid "be undone"
+msgstr "deshacer"
+
+#: templates/zkcluster/terminal_edit.html:109
+msgid "This will delete the"
+msgstr "Esto borrará "
+
+#: templates/zkcluster/terminal_edit.html:109
+msgid "from database"
+msgstr " de la Base de datos"
+
+#: templates/zkcluster/terminal_edit.html:113
+#: templates/zkcluster/terminal_edit.html:144
+msgid "Please type in the name of the terminal to confirm"
+msgstr "Por favor introduzca el nombre de la terminal para confirmar"
+
+#: templates/zkcluster/terminal_edit.html:120
+msgid "I understand the consequences, delete this terminal"
+msgstr "Entiendo las consecuencas, borrar este dispositivo"
+
+#: templates/zkcluster/terminal_edit.html:140
+msgid "This will permanently delete all user and attendance records in"
+msgstr "Esto borrará permanentemente todos los usuarios y registro de asistencia"
+
+#: templates/zkcluster/terminal_edit.html:151
+msgid "I understand the consequences, format this terminal"
+msgstr "Entiendo las consecuencias, formatear el dispositivo"
+
+#: templates/zkcluster/terminal_edit.html:174
+#: templates/zkcluster/user_edit.html:41
+msgid "Updating..."
+msgstr "Actualizando..."
+
+#: templates/zkcluster/terminal_edit.html:178
+msgid "Restarting..."
+msgstr "Reiniciando..."
+
+#: templates/zkcluster/terminal_edit.html:182
+msgid "Shutting down..."
+msgstr "Apagando..."
+
+#: templates/zkcluster/terminal_edit.html:197
+msgid "Deleting..."
+msgstr "Borrando..."
+
+#: templates/zkcluster/terminal_edit.html:212
+msgid "Formating..."
+msgstr "Formateando..."
+
+#: templates/zkcluster/terminal_scan.html:19
+msgid "Scan"
+msgstr "Buscar"
+
+#: templates/zkcluster/user.html:9 templates/zkcluster/user.html:52
+msgid "Add User"
+msgstr "Agregar Usuario"
+
+#: templates/zkcluster/user.html:18
+msgid "Privilege"
+msgstr "Privilegios"
+
+#: templates/zkcluster/user.html:50
+msgid "No user found"
+msgstr "Usuario no encontrado"
+
+#: templates/zkcluster/user_add.html:39
+msgid "Saving..."
+msgstr "Guardando..."

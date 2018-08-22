@@ -1,6 +1,8 @@
 from django.conf.urls import url, include
 
-import views
+from zkcluster import views
+
+app_name = 'zkcluster'
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
